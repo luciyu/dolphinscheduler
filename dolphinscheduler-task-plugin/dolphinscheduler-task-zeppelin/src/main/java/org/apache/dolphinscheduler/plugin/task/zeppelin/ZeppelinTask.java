@@ -42,19 +42,15 @@ import java.util.List;
 import java.util.Map;
 
 import kong.unirest.Unirest;
+import lombok.extern.slf4j.Slf4j;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Slf4j
 public class ZeppelinTask extends AbstractRemoteTask {
 
-    /**
-     * taskExecutionContext
-     */
     private final TaskExecutionContext taskExecutionContext;
 
-    /**
-     * zeppelin parameters
-     */
     private ZeppelinParameters zeppelinParameters;
 
     /**
@@ -66,11 +62,6 @@ public class ZeppelinTask extends AbstractRemoteTask {
 
     private ZeppelinTaskExecutionContext zeppelinTaskExecutionContext;
 
-    /**
-     * constructor
-     *
-     * @param taskExecutionContext taskExecutionContext
-     */
     protected ZeppelinTask(TaskExecutionContext taskExecutionContext) {
         super(taskExecutionContext);
         this.taskExecutionContext = taskExecutionContext;
@@ -91,7 +82,7 @@ public class ZeppelinTask extends AbstractRemoteTask {
         zeppelinParameters.setUsername(zeppelinConnectionParam.getUsername());
         zeppelinParameters.setPassword(zeppelinConnectionParam.getPassword());
         zeppelinParameters.setRestEndpoint(zeppelinConnectionParam.getRestEndpoint());
-        log.info("Initialize zeppelin task params:{}", JSONUtils.toPrettyJsonString(taskParams));
+        log.info("Initialize zeppelin task params:{}", JSONUtils.toPrettyJsonString(zeppelinParameters));
         this.zClient = getZeppelinClient();
     }
 
